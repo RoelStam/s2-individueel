@@ -1,0 +1,48 @@
+﻿@using StocksWebApp.ViewModels;
+@model TransactionIndexViewModel
+
+<br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Name</th>
+            <th scope="col">Symbol</th>
+            <th scope="col">Index</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Price/share</th>
+            <th scope="col">Total price</th>
+            <th scope="col">Date transacted</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var transaction in Model.Transactions)
+        {
+            <tr>
+                @if (transaction.Type == "Buy")
+                {
+                    <th scope="row" style="color:limegreen">
+                        <a asp-action="Detail" asp-controller="Order" asp-route-id="@transaction.OrderID" style="color: inherit; text-decoration: none">
+                            @transaction.Type
+                        </a>
+                    </th>
+                }
+                else
+                {
+                    <th scope="row" style="color:red">
+                        <a asp-action="Detail" asp-controller="Order" asp-route-id="@transaction.OrderID" style="color: inherit; text-decoration: none">
+                            @transaction.Type
+                        </a>
+                    </th>
+                }
+                <td>@transaction.Name</td>
+                <td>@transaction.Symbol</td>
+                <td>@transaction.IndexSymbol</td>
+                <td>@transaction.Shares</td>
+                <td>@transaction.PPS</td>
+                <td>@transaction.TotalPrice</td>
+                <td>@transaction.DateTransacted</td>
+            </tr>
+        }
+    </tbody>
+</table>

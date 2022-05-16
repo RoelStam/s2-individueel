@@ -1,0 +1,64 @@
+﻿@using StocksWebApp.ViewModels;
+@model StockIndexViewModel
+
+<form method="get" asp-controller="Stock" asp-action="Index">
+    <div class="d-flex p-2">
+        <div style="width: 80%; display: inline-block">
+            <div class="form-group">
+                <strong><label>Searchterm</label></strong>
+                <input class="form-control" asp-for="SearchTerm" />
+            </div>
+        </div>
+        <div style="width: 20%; display: inline-block">
+            <div class="form-group">
+                <strong><label>Filter</label></strong>
+                <select class="form-control" aria-label="Default select example" asp-for="IndexFilter">
+                    <option value="0">All</option>
+                    @foreach(var index in Model.Indices)
+                    {
+                        <option value="@index.ID">@index.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+<br>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Name</th>
+            <th scope="col">Index</th>
+            <th scope="col">Price</th>
+            <th scope="col">Change</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stock in Model.StockViewModels)
+        {
+            <tr>
+                <th scope="row">
+                    <a asp-action="Detail" asp-controller="Stock" asp-route-id="@stock.ID">
+                        @stock.Symbol
+                    </a>
+                </th>
+                <td>@stock.Name</td>
+                <td>@stock.IndexSymbol</td>
+                @if (stock.Change > 0)
+                {
+                    <td style="color:limegreen">@stock.Price</td>
+                    <td style="color:limegreen">+@stock.Change</td>
+                }
+                else
+                {
+                    <td style="color:red">@stock.Price</td>
+                    <td style="color:red">@stock.Change</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

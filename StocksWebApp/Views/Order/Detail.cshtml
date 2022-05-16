@@ -1,0 +1,46 @@
+﻿@using StocksWebApp.ViewModels;
+@model OrderDetailViewModel
+
+<br />
+<p><strong>@Model.stockViewModel.Name</strong></p>
+@Model.stockViewModel.Symbol || @Model.indexViewModel.Name
+@if (Model.stockViewModel.Change > 0)
+{
+    <p style="color:limegreen"><strong>@Model.stockViewModel.Price | @Model.stockViewModel.Change</strong></p>
+}
+else if (Model.stockViewModel.Change < 0)
+{
+    <p style="color:red"><strong>@Model.stockViewModel.Price | @Model.stockViewModel.Change</strong></p>
+}
+else
+{
+    <p><strong>@Model.stockViewModel.Price | @Model.stockViewModel.Change</strong></p>
+}
+
+<div class="d-flex p-2" style="width:400px">
+    <div style="width:50%; display:inline-block">
+        OrderID <br>
+        Type <br>
+        Amount <br>
+        Limit <br>
+        Total
+    </div>
+
+    <div style="width:50%; display: inline-block">
+        <strong>
+            @Model.orderViewModel.ID <br>
+            @Model.orderViewModel.Type <br>
+            @Model.orderViewModel.Shares <br>
+            $@Model.orderViewModel.Limit <br>
+            $@Model.orderViewModel.TotalPrice
+        </strong>
+    </div>
+</div>
+
+@if (!Model.orderViewModel.Completed)
+{
+    <a class="btn btn-primary" asp-action="Update" asp-controller="Order" asp-route-id="@Model.orderViewModel.ID">Update</a>
+    <a class="btn btn-danger" asp-action="Delete" asp-controller="Order" asp-route-id="@Model.orderViewModel.ID">Delete</a>
+}
+
+<a class="btn btn-primary" asp-action="Index">Back to list</a>

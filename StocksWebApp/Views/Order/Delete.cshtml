@@ -1,0 +1,31 @@
+﻿@using StocksWebApp.ViewModels
+@model OrderViewModel
+
+<form asp-action="DeletePost" asp-controller="Order" asp-route-id="@Model.ID">
+    <div class="form-group">
+        <p><strong>Are you sure you want to delete this order?</strong></p>
+        <br />
+        <div class="d-flex p-2" style="width:400px">
+            <div style="width:50%; display:inline-block">
+                Stock <br>
+                Index <br>
+                OrderID <br>
+                Type <br>
+                Amount <br>
+                Limit <br>
+            </div>
+            <div style="width:50%; display: inline-block">
+                <strong>
+                    @Model.StockName <br>
+                    @Model.IndexSymbol <br>
+                    @Model.ID <br>
+                    @Model.Type <br>
+                    @Model.Shares <br>
+                    @Model.Limit <br>
+                </strong>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit"> Yes </button>
+    <a class="btn btn-primary" asp-action="Detail" asp-controller="Order" asp-route-id="@Model.ID"> No </a>
+</form>

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StocksWebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="d-flex p-2" style="background-color: dodgerblue">
+        <div style="display: inline-block; width: 20%">
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Home">Home</a>
+            <br />
+        </div>
+        <div style="display: inline-block; width: 20%">
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Stock">Stocks</a>
+        </div>
+        <div style="display: inline-block; width: 20%">
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Transaction">Transactions</a>
+            <br />
+            <br />
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Holding">Holdings</a>
+        </div>
+        <div style="display: inline-block; width: 20%">
+            <a class="btn btn-secondary" asp-action="Start" asp-controller="Transaction">Start new prices</a>
+            <br />
+        </div>
+        <div style="display: inline-block; width: 20%">
+            <a class="btn btn-secondary" asp-action="Detail" asp-controller="Account">Account</a>
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Order">Orders</a>
+            <br />
+            <br />
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Watchlist">Watchlist</a>
+        </div>
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - StocksWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/8574cc9c79.js" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

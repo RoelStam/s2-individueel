@@ -1,0 +1,19 @@
+﻿@using StocksWebApp.ViewModels;
+@model StockDetailViewModel
+
+<p><strong>@Model.stock.Name (@Model.stock.Symbol)</strong></p>
+<p>@Model.index.Name (@Model.index.Symbol)</p>
+@if (Model.stock.Change < 0)
+{
+    <p style="color:red"><strong>@Model.stock.Price @Model.stock.Change</strong></p>
+}
+else
+{
+    <p style="color:limegreen"><strong>@Model.stock.Price +@Model.stock.Change</strong></p>
+}
+
+<a class="btn btn-primary" asp-action="PlaceOrder" asp-controller="Order" asp-route-stockID="@Model.stock.ID">Place order</a>&nbsp;
+<a class="btn btn-primary" asp-action="AddRemoveWatchlist" asp-controller="Watchlist" asp-route-StockID="@Model.stock.ID">
+    <i class="far fa-star"></i>
+</a>
+<a class="btn btn-primary" asp-action="Index">Back to list</a>

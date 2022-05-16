@@ -1,0 +1,34 @@
+﻿@using StocksWebApp.ViewModels;
+@model AccountViewModel
+
+<div class="d-flex p-2" style="width: 25%">
+    <div style="display: inline-block; width: 50%">
+        <strong>
+            Username: <br />
+            EmailAddress:
+        </strong>
+    </div>
+    <div style="display: inline-block; width: 50%">
+        
+        @Model.Username <br />
+        @Model.EmailAddress
+    </div>
+</div>
+<br />
+
+<div class="d-flex p-2">
+    <div style="display: inline-block; width: 50%">
+        <strong>Total in Account:</strong> <br />
+        $@Model.TotalAccount
+        <br /> <br />
+               <strong>Available:</strong> <br />
+        $@Model.Available
+    </div>
+    <div style="display: inline-block; width: 50%">
+        <strong>In stocks:</strong> <br>
+        $@Model.InHoldings
+        <br /> <br />
+        <strong>Capital gain:</strong> <br />
+        $@Model.TotalGain
+    </div>
+</div>

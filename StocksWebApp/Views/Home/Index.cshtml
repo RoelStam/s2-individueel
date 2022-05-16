@@ -1,0 +1,137 @@
+﻿@using StocksWebApp.ViewModels;
+@model HomeIndexViewModel
+
+<div class="d-flex p-2">
+    <div style="width: 50%; display:inline-block; margin-right: 1em">
+        <a class="btn btn-primary" asp-action="Index" asp-controller="Stock">Stocks</a>
+        <br />
+        <br />
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Index</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < 10; i++)
+                {
+                    <tr>
+                        <th scope="row">
+                            <a asp-action="Detail" asp-controller="Stock" asp-route-id="@Model.Stocks[i].ID">
+                                @Model.Stocks[i].Symbol
+                            </a>
+                        </th>
+                        <td>@Model.Stocks[i].Name</td>
+                        <td>@Model.Stocks[i].IndexSymbol</td>
+                        @if (Model.Stocks[i].Change > 0)
+                        {
+                            <td style="color:limegreen">@Model.Stocks[i].Price</td>
+                            <td style="color:limegreen">+@Model.Stocks[i].Change</td>
+                        }
+                        else
+                        {
+                            <td style="color:red">@Model.Stocks[i].Price</td>
+                            <td style="color:red">@Model.Stocks[i].Change</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div style="width:50%; display:inline-block; margin-left: 1em">
+        <a class="btn btn-primary" asp-action="Index" asp-controller="Order">Orders</a>
+        <br />
+        <br />
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Index</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Price/share</th>
+                    <th scope="col">Completed</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Orders.Count > 10)
+                {
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <tr>
+                            @if (Model.Orders[i].Type == "Buy")
+                            {
+                                <th scope="row" style="color:limegreen">
+                                    <a asp-action="Detail" asp-controller="Order" asp-route-id="@Model.Orders[i].ID" style="color: inherit; text-decoration: none">
+                                        @Model.Orders[i].Type
+                                    </a>
+                                </th>
+                            }
+                            else
+                            {
+                                <th scope="row" style="color:red">
+                                    <a asp-action="Detail" asp-controller="Order" asp-route-id="@Model.Orders[i].ID" style="color: inherit; text-decoration: none">
+                                        @Model.Orders[i].Type
+                                    </a>
+                                </th>
+                            }
+                            <td>@Model.Orders[i].StockName</td>
+                            <td>@Model.Orders[i].IndexSymbol</td>
+                            <td>@Model.Orders[i].Shares</td>
+                            <td>$@Model.Orders[i].Limit</td>
+                            @if (Model.Orders[i].Completed)
+                            {
+                                <td>Completed</td>
+                            }
+                            else
+                            {
+                                <td>Pending</td>
+                            }
+                        </tr>
+                    }
+                }
+                else
+                {
+                    @for (int i = 0; i < Model.Orders.Count; i++)
+                    {
+                        <tr>
+                            @if (Model.Orders[i].Type == "Buy")
+                            {
+                                <th scope="row" style="color:limegreen">
+                                    <a asp-action="Detail" asp-controller="Order" asp-route-id="@Model.Orders[i].ID" style="color: inherit; text-decoration: none">
+                                        @Model.Orders[i].Type
+                                    </a>
+                                </th>
+                            }
+                            else
+                            {
+                                <th scope="row" style="color:red">
+                                    <a asp-action="Detail" asp-controller="Order" asp-route-id="@Model.Orders[i].ID" style="color: inherit; text-decoration: none">
+                                        @Model.Orders[i].Type
+                                    </a>
+                                </th>
+                            }
+                            <td>@Model.Orders[i].StockName</td>
+                            <td>@Model.Orders[i].IndexSymbol</td>
+                            <td>@Model.Orders[i].Shares</td>
+                            <td>$@Model.Orders[i].Limit</td>
+                            @if (Model.Orders[i].Completed)
+                            {
+                                <td>Completed</td>
+                            }
+                            else
+                            {
+                                <td>Pending</td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@using StocksWebApp.ViewModels;
+@model OrderAddViewModel
+
+<p><strong>@Model.StockName || @Model.StockSymbol</strong></p>
+@Model.IndexName || @Model.IndexSymbol
+@if(@Model.StockChange > 0)
+{
+    <p style="color:limegreen"><strong>@Model.StockPrice | @Model.StockChange</strong></p>
+}
+else if(@Model.StockChange < 0)
+{
+    <p style="color:red"><strong>@Model.StockPrice | @Model.StockChange</strong></p>
+}
+else
+{
+    <p><strong>@Model.StockPrice | @Model.StockChange</strong></p>
+}
+
+<form asp-route-stockID="@Model.StockID">
+
+    <div class="form-group">
+        <strong><label asp-for="Shares"></label></strong>
+        <input class="form-control" asp-for="Shares">
+    </div>
+    <div class="form-group">
+        <strong><label asp-for="Limit"></label></strong>
+        <input class="form-control" asp-for="Limit">
+    </div>
+    <div class="form-group">
+        <strong><label asp-for="Type"></label></strong>
+        <select class="form-control" aria-label="Default select example" asp-for="Type">
+            <option value="Buy">Buy</option>
+            <option value="Sell">Sell</option>
+        </select>
+    </div>
+    <a class="btn btn-danger" asp-action="Detail" asp-controller="Stock" asp-route-id="@Model.StockID">Cancel</a>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

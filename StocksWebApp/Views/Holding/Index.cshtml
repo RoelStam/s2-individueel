@@ -1,0 +1,33 @@
+﻿@using StocksWebApp.ViewModels;
+@model HoldingIndexViewModel
+
+<br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Stock</th>
+            <th>Symbol</th>
+            <th>Index</th>
+            <th>Shares</th>
+            <th>Worth</th>
+            <th>Cost/Share</th>
+            <th>Current price/Share</th>
+            <th>Gain</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var holding in Model.Holdings)
+        {
+            <tr>
+                <td>@holding.StockName</td>
+                <td>@holding.StockSymbol</td>
+                <td>@holding.IndexSymbol</td>
+                <td>@holding.TotalShares</td>
+                <td>@holding.TotalWorth</td>
+                <td>@holding.AvaragePrice</td>
+                <td>@holding.CurrentPrice</td>
+                <td>@holding.Gain</td>
+            </tr>
+        }
+    </tbody>
+</table> 

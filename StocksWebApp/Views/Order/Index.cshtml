@@ -1,0 +1,51 @@
+﻿@using StocksWebApp.ViewModels;
+@model OrderIndexViewModel
+
+<br />
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Index</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Price/share</th>
+            <th scope="col">Completed</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.OrderViewModels)
+        {
+            <tr>
+                @if (order.Type == "Buy")
+                {
+                    <th scope="row" style="color:limegreen">
+                        <a asp-action="Detail" asp-controller="Order" asp-route-id="@order.ID" style="color: inherit; text-decoration: none">
+                            @order.Type
+                        </a>
+                    </th>
+                }
+                else
+                {
+                    <th scope="row" style="color:red">
+                        <a asp-action="Detail" asp-controller="Order" asp-route-id="@order.ID" style="color: inherit; text-decoration: none">
+                            @order.Type
+                        </a>
+                    </th>
+                }
+                <td>@order.StockName</td>
+                <td>@order.IndexSymbol</td>
+                <td>@order.Shares</td>
+                <td>$@order.Limit</td>
+                @if(order.Completed)
+                {
+                    <td>Completed</td>
+                }
+                else
+                {
+                    <td>Pending</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
